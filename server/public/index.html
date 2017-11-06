@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Message board</title>
+    <script src="vendors/angular.min.js"></script>
+    <script src="vendors/angular-route.min.js"></script>
+    <script src="scripts/client.js"></script>
+    <script src="scripts/controllers/messages.controller.js"></script>
+
 </head>
-<body>
+
+<body ng-app="myApp">
     <h1>Write your messages</h1>
+    <div ng-controller="MessageController as vl">
+        <form ng-submit="vl.postMessages(vl.message)">
+            <label for="name">What is your name?</label>
+            <input type="text" ng-model="vl.message.name" id="name" placeholder="name">
+            <label for="Message">Leave a message</label>
+            <input type="text" ng-model="vl.message.message" id="message" placeholder="What is your message?">
+            <button class="btn btn-primary">Add Message</button>
+        </form>
+        <h1>Messages</h1>
+        <div ng-repeat="return in vl.return">
+           <P><strong>Name:</strong> {{return.name}}</P>
+           <P><strong>Message:</strong> {{return.message}}</P>
+        </div>
+    </div>
 </body>
+
 </html>
